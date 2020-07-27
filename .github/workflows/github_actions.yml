@@ -14,6 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       id: test
+      if: always()
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Use Node.js 
       uses: actions/setup-node@v1
       with:
@@ -22,11 +25,5 @@ jobs:
       run: 
         npm install
         npm build
-    - uses: LouiseBrunner/checks-action@v0.1.0
-      if: always()
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name:  Test XYZ
-        conclusion: ${{ job }}
 #    - name: Test
 #      run: npm test
