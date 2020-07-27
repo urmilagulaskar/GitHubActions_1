@@ -21,5 +21,13 @@ jobs:
       run: 
         npm install
         npm build
-    - name: Test
-      run: npm test
+    - uses: action/create-outputs@v0.0.0-fake
+      id: test
+    - uses: LouiseBrunner/checks-action@v0.1.0
+      if: always()
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name:  Test XYZ
+        conclusion: ${{ job }}
+#    - name: Test
+#      run: npm test
